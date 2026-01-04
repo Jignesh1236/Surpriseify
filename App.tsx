@@ -60,13 +60,11 @@ const App: React.FC = () => {
       const params = new URLSearchParams();
       params.set('v', data.vibe.toLowerCase());
       params.set('d', `${data.recipientName}&${data.senderName}&${data.message}`);
-      
-      // Using Base64 for images in URL. Note: Browsers have URL length limits (usually ~2k-8k chars).
-      // If the base64 is too long, the link might break in some browsers, but it fulfills the request.
       if (data.photo) {
-        params.set('p', data.photo);
+        if (data.photo.length < 5000) {
+           params.set('p', data.photo);
+        }
       }
-      
       const newSearch = `?${params.toString()}`;
 
       if (window.location.search !== newSearch) {
