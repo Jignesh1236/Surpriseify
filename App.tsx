@@ -20,15 +20,14 @@ const App: React.FC = () => {
 
   // Sync state from URL
   const syncStateFromURL = useCallback(() => {
-    const path = window.location.pathname;
-    const parts = path.split('/').filter(Boolean);
+    const params = new URLSearchParams(window.location.search);
+    const themeStr = params.get('v')?.toUpperCase();
+    const payload = params.get('d');
 
-    if (parts.length >= 2) {
-      const themeStr = parts[0].toUpperCase();
-      const details = decodeURIComponent(parts[1]).split('&');
-      
+    if (themeStr && payload) {
+      const details = decodeURIComponent(payload).split('&');
       const matchedVibe = Object.values(Vibe).find(v => v === themeStr) as Vibe;
-      
+
       if (matchedVibe && details.length >= 2) {
         setData({
           vibe: matchedVibe,
@@ -36,12 +35,10 @@ const App: React.FC = () => {
           senderName: details[1] || '',
           message: details[2] || ''
         });
-        // If we have data from URL, we go straight to surprise if unveiled or stay in form?
-        // Usually, shared links go straight to surprise.
         setView('SURPRISE');
         setIsUnveiled(false);
       }
-    } else if (parts.length === 0) {
+    } else {
       setView('HOME');
     }
   }, []);
@@ -55,13 +52,14 @@ const App: React.FC = () => {
 
   // Sync URL from state in real-time (ReplaceState to avoid flooding history)
   useEffect(() => {
-    if (view === 'FORM' || view === 'SURPRISE') {
-      const themePath = data.vibe.toLowerCase();
-      const detailsPath = encodeURIComponent(`${data.recipientName}&${data.senderName}&${data.message}`);
-      const newPath = `/${themePath}/${detailsPath}`;
-      
-      if (window.location.pathname !== newPath) {
-        window.history.replaceState({}, '', newPath);
+    if (view === 'SURPRISE' || view === 'FORM') {
+      const params = new URLSearchParams();
+      params.set('v', data.vibe.toLowerCase());
+      params.set('d', `${data.recipientName}&${data.senderName}&${data.message}`);
+      const newSearch = `?${params.toString()}`;
+
+      if (window.location.search !== newSearch) {
+        window.history.replaceState({}, '', newSearch);
       }
     }
   }, [data, view]);
@@ -82,9 +80,9 @@ const App: React.FC = () => {
     if (!finalMessage.trim()) {
       finalMessage = await generateAIMessage(data.vibe, data.recipientName);
     }
-    
+
     setData(prev => ({ ...prev, message: finalMessage }));
-    
+
     setTimeout(() => {
       setIsProcessing(false);
       setView('SURPRISE');
@@ -105,7 +103,7 @@ const App: React.FC = () => {
     setIsUnveiled(false);
     setShowCelebrate(false);
     setView('HOME');
-    window.history.pushState({}, '', '/');
+    window.history.pushState({}, '', window.location.pathname);
   };
 
   const Watermark = () => (
@@ -136,7 +134,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen w-full relative overflow-x-hidden">
       <Watermark />
-      
+
       {view === 'HOME' && (
         <main className="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-24 flex flex-col items-center">
           <header className="text-center mb-16 md:mb-20 space-y-4">
@@ -191,7 +189,7 @@ const App: React.FC = () => {
         <main className="w-full max-xl mx-auto px-4 md:px-6 py-12 flex flex-col items-center justify-center min-h-screen animate-reveal">
           <div className="w-full glass-card rounded-[40px] md:rounded-[50px] p-8 md:p-14 space-y-10 md:space-y-12 relative overflow-hidden">
             <div className={`absolute top-0 left-0 h-1 bg-white/20 w-full`}></div>
-            
+
             <header className="space-y-4">
               <button onClick={() => setView('HOME')} className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/30 hover:text-white transition-all">
                 ← Return to Base
@@ -251,7 +249,7 @@ const App: React.FC = () => {
             data.vibe === Vibe.BIRTHDAY ? 'bg-[#0d0d00]' :
             'bg-[#0a000a]'
         }`}>
-          
+
           {!isUnveiled ? (
             <div className={`relative w-full h-full flex flex-col items-center justify-center space-y-12 ${isUnveiling ? 'opacity-0 scale-150 blur-3xl transition-all duration-1000' : 'opacity-100'}`}>
               <div className="absolute inset-0 mesh-bg opacity-30"></div>
@@ -314,7 +312,7 @@ const App: React.FC = () => {
                         </div>
                       ) : (
                         <div className="animate-reveal py-8">
-                           <h3 className="luxury-text text-3xl md:text-7xl font-black italic tracking-widest leading-tight uppercase">message bhi kar do</h3>
+                           <h3 className="luxury-text text-3xl md:text-7xl font-black italic tracking-widest leading-tight uppercase">Confirmed For Eternity</h3>
                            <div className="mt-4 flex justify-center gap-4 text-3xl md:text-4xl">✨ 🕊️ ✨</div>
                         </div>
                       )}
@@ -394,7 +392,20 @@ const App: React.FC = () => {
                  </>
                )}
 
-               <button 
+              <button 
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert("Link copied to clipboard! Share it with your special someone.");
+                  } catch (err) {
+                    alert("Failed to copy link. Please copy the URL from your browser's address bar.");
+                  }
+                }}
+                className="fixed bottom-24 md:bottom-28 px-8 py-3 md:px-10 md:py-4 glass-card rounded-full text-white/60 hover:text-white transition-all flex items-center gap-3 group text-[9px] md:text-[10px] font-bold tracking-[0.4em] uppercase border border-white/5 z-[300]"
+              >
+                🔗 Copy Shareable Link
+              </button>
+              <button 
                 onClick={reset}
                 className="fixed bottom-8 md:bottom-10 px-8 py-3 md:px-10 md:py-4 glass-card rounded-full text-white/40 active:text-white md:hover:text-white transition-all flex items-center gap-3 group text-[9px] md:text-[10px] font-bold tracking-[0.4em] uppercase border border-white/5 z-[300]"
               >
