@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Vibe, View, SurpriseData } from './types';
 import { generateAIMessage } from './services/geminiService';
 import { FloatingElements } from './components/FloatingHearts';
@@ -18,8 +18,8 @@ const App: React.FC = () => {
   const [isUnveiled, setIsUnveiled] = useState(false);
   const [showCelebrate, setShowCelebrate] = useState(false);
 
-  // Parse URL on mount to check for shared surprises
-  useEffect(() => {
+  // Sync state from URL
+  const syncStateFromURL = useCallback(() => {
     const path = window.location.pathname;
     const parts = path.split('/').filter(Boolean);
 
@@ -27,21 +27,47 @@ const App: React.FC = () => {
       const themeStr = parts[0].toUpperCase();
       const details = decodeURIComponent(parts[1]).split('&');
       
-      if (Object.values(Vibe).includes(themeStr as Vibe) && details.length >= 2) {
+      const matchedVibe = Object.values(Vibe).find(v => v === themeStr) as Vibe;
+      
+      if (matchedVibe && details.length >= 2) {
         setData({
-          vibe: themeStr as Vibe,
+          vibe: matchedVibe,
           recipientName: details[0] || '',
           senderName: details[1] || '',
           message: details[2] || ''
         });
+        // If we have data from URL, we go straight to surprise if unveiled or stay in form?
+        // Usually, shared links go straight to surprise.
         setView('SURPRISE');
         setIsUnveiled(false);
       }
+    } else if (parts.length === 0) {
+      setView('HOME');
     }
   }, []);
 
+  // Parse URL on mount
+  useEffect(() => {
+    syncStateFromURL();
+    window.addEventListener('popstate', syncStateFromURL);
+    return () => window.removeEventListener('popstate', syncStateFromURL);
+  }, [syncStateFromURL]);
+
+  // Sync URL from state in real-time (ReplaceState to avoid flooding history)
+  useEffect(() => {
+    if (view === 'FORM' || view === 'SURPRISE') {
+      const themePath = data.vibe.toLowerCase();
+      const detailsPath = encodeURIComponent(`${data.recipientName}&${data.senderName}&${data.message}`);
+      const newPath = `/${themePath}/${detailsPath}`;
+      
+      if (window.location.pathname !== newPath) {
+        window.history.replaceState({}, '', newPath);
+      }
+    }
+  }, [data, view]);
+
   const handleVibeSelect = (vibe: Vibe) => {
-    setData({ ...data, vibe });
+    setData(prev => ({ ...prev, vibe }));
     setView('FORM');
   };
 
@@ -59,10 +85,6 @@ const App: React.FC = () => {
     
     setData(prev => ({ ...prev, message: finalMessage }));
     
-    // Update URL for sharing
-    const shareUrl = `/${data.vibe.toLowerCase()}/${encodeURIComponent(`${data.recipientName}&${data.senderName}&${finalMessage}`)}`;
-    window.history.pushState({}, '', shareUrl);
-
     setTimeout(() => {
       setIsProcessing(false);
       setView('SURPRISE');
@@ -119,7 +141,7 @@ const App: React.FC = () => {
         <main className="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-24 flex flex-col items-center">
           <header className="text-center mb-16 md:mb-20 space-y-4">
             <div className="inline-block px-4 py-1 border border-white/10 rounded-full mb-4">
-              <span className="text-[9px] md:text-[10px] uppercase tracking-[0.5em] text-white/50">Version 2.6 • Premium Experience</span>
+              <span className="text-[9px] md:text-[10px] uppercase tracking-[0.5em] text-white/50">Version 2.7 • Premium Experience</span>
             </div>
             <h1 className="text-5xl md:text-9xl font-black tracking-tighter italic bg-clip-text text-transparent bg-gradient-to-b from-white to-white/20 leading-tight">
               SURPRISE<span className="text-white/10">ME</span>
@@ -166,7 +188,7 @@ const App: React.FC = () => {
       )}
 
       {view === 'FORM' && (
-        <main className="w-full max-w-xl mx-auto px-4 md:px-6 py-12 flex flex-col items-center justify-center min-h-screen animate-reveal">
+        <main className="w-full max-xl mx-auto px-4 md:px-6 py-12 flex flex-col items-center justify-center min-h-screen animate-reveal">
           <div className="w-full glass-card rounded-[40px] md:rounded-[50px] p-8 md:p-14 space-y-10 md:space-y-12 relative overflow-hidden">
             <div className={`absolute top-0 left-0 h-1 bg-white/20 w-full`}></div>
             
