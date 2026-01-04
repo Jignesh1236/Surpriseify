@@ -292,7 +292,7 @@ const App: React.FC = () => {
                         </div>
                       ) : (
                         <div className="animate-reveal py-8">
-                           <h3 className="luxury-text text-3xl md:text-7xl font-black italic tracking-widest leading-tight uppercase">Confirmed For Eternity</h3>
+                           <h3 className="luxury-text text-3xl md:text-7xl font-black italic tracking-widest leading-tight uppercase">message bhi kar do</h3>
                            <div className="mt-4 flex justify-center gap-4 text-3xl md:text-4xl">✨ 🕊️ ✨</div>
                         </div>
                       )}
