@@ -14,6 +14,4 @@ export interface SurpriseData {
   recipientName: string;
   senderName: string;
   message: string;
-  photo?: string;
-
 }
