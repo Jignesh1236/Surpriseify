@@ -408,39 +408,52 @@ const App: React.FC = () => {
               {data.vibe === Vibe.LOVE && (
                 <>
                   <FloatingElements type="HEART" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,45,85,0.1),transparent_70%)]"></div>
-                  <div className="relative space-y-8 md:space-y-12 max-w-4xl py-12 flex flex-col items-center">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,45,85,0.15),transparent_70%)] animate-pulse"></div>
+                  <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.8))]"></div>
+                  <div className="relative space-y-8 md:space-y-12 max-w-4xl py-12 flex flex-col items-center z-10">
                     {data.photo && (
                       <div className="relative mb-6">
-                        <div className="w-52 h-52 md:w-64 md:h-64 rounded-full border-8 border-red-500/20 p-2 overflow-hidden shadow-[0_0_80px_rgba(255,45,85,0.5)] animate-float">
+                        <div className="w-52 h-52 md:w-72 md:h-72 rounded-full border-4 border-red-500/30 p-2 overflow-hidden shadow-[0_0_100px_rgba(255,45,85,0.4)] animate-float">
                           <img
                             src={data.photo}
-                            className="w-full h-full object-cover rounded-full"
+                            className="w-full h-full object-cover rounded-full scale-110 hover:scale-125 transition-transform duration-[2000ms]"
                             alt="Memory"
                           />
                         </div>
-                        <div className="absolute -bottom-4 -right-4 text-4xl animate-pulse">
+                        <div className="absolute -bottom-4 -right-4 text-5xl animate-bounce drop-shadow-[0_0_20px_rgba(255,45,85,0.8)]">
                           💖
                         </div>
                       </div>
                     )}
 
-                    <div className={`text-8xl md:text-[15rem] opacity-5 absolute left-1/2 -translate-x-1/2 select-none animate-[heartbeat_2s_infinite] ${data.photo ? '-top-24 md:-top-40' : 'top-1/2 -translate-y-1/2'}`}>
+                    <div className={`text-[12rem] md:text-[25rem] opacity-[0.03] absolute left-1/2 -translate-x-1/2 select-none animate-[heartbeat_3s_infinite] pointer-events-none ${data.photo ? '-top-20 md:-top-40' : 'top-1/2 -translate-y-1/2'}`}>
                       ❤️
                     </div>
-                    <h3 className="text-white/30 text-[9px] md:text-sm uppercase tracking-[1em] font-bold">
-                      A Digital Love Letter
-                    </h3>
-                    <h2 className="romantic-font text-5xl md:text-[10rem] text-red-500 font-bold leading-tight drop-shadow-[0_0_50px_rgba(255,45,85,0.5)] break-words">
-                      My {data.recipientName}
-                    </h2>
-                    <p className="text-xl md:text-5xl font-light leading-snug italic text-white/80 max-w-3xl mx-auto px-2 break-words">
-                      "{data.message}"
-                    </p>
-                    <div className="pt-6 md:pt-10 flex flex-col items-center space-y-2">
-                      <div className="w-px h-12 md:h-20 bg-gradient-to-b from-red-500 to-transparent"></div>
-                      <p className="text-white/30 text-[9px] md:text-xs uppercase tracking-[0.5em]">
-                        Yours Always, {data.senderName}
+                    
+                    <div className="space-y-4 text-center">
+                      <h3 className="text-red-500/60 text-[10px] md:text-xs uppercase tracking-[1.5em] font-black animate-pulse">
+                        A Digital Masterpiece of Love
+                      </h3>
+                      <h2 className="romantic-font text-6xl md:text-[12rem] text-transparent bg-clip-text bg-gradient-to-b from-red-400 via-red-600 to-red-900 font-bold leading-none drop-shadow-[0_0_30px_rgba(255,45,85,0.3)] break-words py-4">
+                        My {data.recipientName}
+                      </h2>
+                    </div>
+
+                    <div className="relative group max-w-2xl">
+                      <div className="absolute -inset-4 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                      <p className="text-2xl md:text-6xl font-extralight leading-tight italic text-white/90 px-4 break-words relative z-10 drop-shadow-2xl">
+                        "{data.message}"
+                      </p>
+                    </div>
+
+                    <div className="pt-12 md:pt-20 flex flex-col items-center space-y-4">
+                      <div className="flex items-center gap-4">
+                        <div className="h-px w-12 md:w-24 bg-gradient-to-r from-transparent to-red-500"></div>
+                        <div className="w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
+                        <div className="h-px w-12 md:w-24 bg-gradient-to-l from-transparent to-red-500"></div>
+                      </div>
+                      <p className="text-white/40 text-[10px] md:text-sm uppercase tracking-[0.8em] font-medium italic">
+                        Yours Eternally, {data.senderName}
                       </p>
                     </div>
                   </div>
@@ -488,7 +501,7 @@ const App: React.FC = () => {
                       ) : (
                         <div className="animate-reveal py-8 w-full">
                           <h3 className="luxury-text text-3xl md:text-7xl font-black italic tracking-widest leading-tight uppercase">
-                            MESSAGE BHI KAR DO
+                            Confirmed For Eternity
                           </h3>
                           <div className="mt-4 flex justify-center md:justify-start gap-4 text-3xl md:text-4xl">
                             ✨ 🕊️ ✨
