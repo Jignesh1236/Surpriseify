@@ -413,10 +413,10 @@ const App: React.FC = () => {
                   <div className="relative space-y-8 md:space-y-12 max-w-4xl py-12 flex flex-col items-center z-10">
                     {data.photo && (
                       <div className="relative mb-6">
-                        <div className="w-56 h-56 md:w-80 md:h-80 rounded-[2rem] md:rounded-[3rem] border-2 border-red-500/30 p-2 overflow-hidden shadow-[0_20px_100px_rgba(255,45,85,0.4)] animate-float transform rotate-2">
+                        <div className="w-56 h-56 md:w-80 md:h-80 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-4 border-red-500/20 shadow-[0_20px_100px_rgba(255,45,85,0.4)] animate-float">
                           <img
                             src={data.photo}
-                            className="w-full h-full object-cover rounded-[1.5rem] md:rounded-[2.5rem] scale-110 hover:scale-125 transition-transform duration-[2000ms]"
+                            className="w-full h-full object-cover scale-110 hover:scale-125 transition-transform duration-[2000ms]"
                             alt="Memory"
                           />
                         </div>
@@ -465,7 +465,7 @@ const App: React.FC = () => {
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
                   <div className="relative w-full max-w-6xl py-12 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
                     {data.photo && (
-                      <div className="w-72 h-96 md:w-96 md:h-[35rem] border-8 border-double border-[#d4af37] p-3 bg-neutral-900 shadow-[30px_30px_80px_rgba(0,0,0,0.9)] transform -rotate-2 hover:rotate-0 transition-all duration-1000 group relative overflow-hidden">
+                      <div className="w-64 h-64 md:w-96 md:h-96 rounded-[70%_30%_30%_70%_/_70%_70%_30%_30%] border-8 border-double border-[#d4af37] overflow-hidden shadow-[30px_30px_80px_rgba(0,0,0,0.9)] transform -rotate-2 hover:rotate-0 transition-all duration-1000 group relative">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <img
                           src={data.photo}
@@ -574,18 +574,12 @@ const App: React.FC = () => {
                       </h2>
 
                       {data.photo && (
-                        <div className="absolute -bottom-24 right-2 md:-right-12 w-48 h-60 md:w-72 md:h-84 bg-white p-2 md:p-3 rotate-3 md:rotate-6 shadow-[20px_20px_0px_#af52de] transform hover:scale-105 hover:-rotate-0 transition-all duration-500 z-30 ring-1 ring-black/5">
-                          <div className="w-full h-[85%] overflow-hidden relative group">
-                            <div className="absolute inset-0 bg-purple-500/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <img
-                              src={data.photo}
-                              className="w-full h-full object-cover"
-                              alt="The Duo"
-                            />
-                          </div>
-                          <div className="text-black font-black text-[12px] md:text-sm mt-3 tracking-tighter uppercase text-center border-t border-black/10 pt-2">
-                            MOMENT OF THE YEAR // {new Date().getFullYear()}
-                          </div>
+                        <div className="absolute -bottom-24 right-2 md:-right-12 w-56 h-56 md:w-80 md:h-80 rounded-[40%_60%_70%_30%_/_40%_50%_60%_40%] overflow-hidden border-4 border-purple-500/30 shadow-[20px_20px_0px_#af52de] transform hover:scale-105 transition-all duration-500 z-30 ring-1 ring-black/5">
+                          <img
+                            src={data.photo}
+                            className="w-full h-full object-cover"
+                            alt="The Duo"
+                          />
                         </div>
                       )}
                     </div>
@@ -621,8 +615,7 @@ const App: React.FC = () => {
                       {data.photo && (
                         <div className="relative w-56 h-56 md:w-80 md:h-80 mb-8">
                           <div className="absolute inset-[-20px] border-[3px] border-dashed border-yellow-400/50 rounded-full animate-[spin_12s_linear_infinite]"></div>
-                          <div className="absolute inset-[-10px] border-2 border-white/20 rounded-full"></div>
-                          <div className="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-[0_0_120px_rgba(255,223,0,0.6)] relative z-10 group">
+                          <div className="w-full h-full rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] border-4 border-white overflow-hidden shadow-[0_0_120px_rgba(255,223,0,0.6)] relative z-10 group">
                             <img
                               src={data.photo}
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
