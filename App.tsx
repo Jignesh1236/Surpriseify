@@ -411,22 +411,7 @@ const App: React.FC = () => {
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,45,85,0.15),transparent_70%)] animate-pulse"></div>
                   <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.8))]"></div>
                   <div className="relative space-y-8 md:space-y-12 max-w-4xl py-12 flex flex-col items-center z-10">
-                    {data.photo && (
-                      <div className="relative mb-6">
-                        <div className="w-56 h-56 md:w-80 md:h-80 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-4 border-red-500/20 shadow-[0_20px_100px_rgba(255,45,85,0.4)] animate-float">
-                          <img
-                            src={data.photo}
-                            className="w-full h-full object-cover scale-110 hover:scale-125 transition-transform duration-[2000ms]"
-                            alt="Memory"
-                          />
-                        </div>
-                        <div className="absolute -bottom-6 -right-6 text-6xl animate-bounce drop-shadow-[0_0_20px_rgba(255,45,85,0.8)] z-10">
-                          💖
-                        </div>
-                      </div>
-                    )}
-
-                    <div className={`text-[12rem] md:text-[25rem] opacity-[0.03] absolute left-1/2 -translate-x-1/2 select-none animate-[heartbeat_3s_infinite] pointer-events-none ${data.photo ? '-top-20 md:-top-40' : 'top-1/2 -translate-y-1/2'}`}>
+                    <div className={`text-[12rem] md:text-[25rem] opacity-[0.03] absolute left-1/2 -translate-x-1/2 select-none animate-[heartbeat_3s_infinite] pointer-events-none -top-20 md:-top-40`}>
                       ❤️
                     </div>
                     
@@ -446,6 +431,21 @@ const App: React.FC = () => {
                       </p>
                     </div>
 
+                    {data.photo && (
+                      <div className="relative mt-12 md:mt-16">
+                        <div className="w-56 h-56 md:w-80 md:h-80 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-4 border-red-500/20 shadow-[0_20px_100px_rgba(255,45,85,0.4)] animate-float">
+                          <img
+                            src={data.photo}
+                            className="w-full h-full object-cover scale-110 hover:scale-125 transition-transform duration-[2000ms]"
+                            alt="Memory"
+                          />
+                        </div>
+                        <div className="absolute -bottom-6 -right-6 text-6xl animate-bounce drop-shadow-[0_0_20px_rgba(255,45,85,0.8)] z-10">
+                          💖
+                        </div>
+                      </div>
+                    )}
+
                     <div className="pt-12 md:pt-20 flex flex-col items-center space-y-4">
                       <div className="flex items-center gap-4">
                         <div className="h-px w-12 md:w-24 bg-gradient-to-r from-transparent to-red-500"></div>
@@ -464,30 +464,30 @@ const App: React.FC = () => {
                 <>
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
                   <div className="relative w-full max-w-6xl py-12 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
-                    {data.photo && (
-                      <div className="w-64 h-64 md:w-96 md:h-96 rounded-[70%_30%_30%_70%_/_70%_70%_30%_30%] border-8 border-double border-[#d4af37] overflow-hidden shadow-[30px_30px_80px_rgba(0,0,0,0.9)] transform -rotate-2 hover:rotate-0 transition-all duration-1000 group relative">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <img
-                          src={data.photo}
-                          className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-1000"
-                          alt="Eternal Moment"
-                        />
-                      </div>
-                    )}
-
-                    <div className={`glass-card rounded-none border-0 p-6 md:p-12 space-y-12 md:space-y-16 flex flex-col items-center ${data.photo ? 'md:items-start text-center md:text-left' : 'text-center'} flex-1`}>
+                    <div className={`glass-card rounded-none border-0 p-6 md:p-12 space-y-12 md:space-y-16 flex flex-col items-center flex-1`}>
                       <div className="luxury-text elegant-font text-base md:text-2xl uppercase tracking-[0.4em] font-bold">
                         The Promise
                       </div>
-                      <h2 className="elegant-font text-6xl md:text-[10rem] italic leading-none tracking-tighter text-white break-words">
+                      <h2 className="elegant-font text-6xl md:text-[10rem] italic leading-none tracking-tighter text-white break-words text-center">
                         {data.recipientName}
                       </h2>
-                      <p className="text-xl md:text-4xl text-neutral-400 font-serif leading-relaxed italic max-w-2xl break-words">
+                      <p className="text-xl md:text-4xl text-neutral-400 font-serif leading-relaxed italic max-w-2xl break-words text-center">
                         "{data.message}"
                       </p>
 
+                      {data.photo && (
+                        <div className="w-64 h-64 md:w-96 md:h-96 rounded-[70%_30%_30%_70%_/_70%_70%_30%_30%] border-8 border-double border-[#d4af37] overflow-hidden shadow-[30px_30px_80px_rgba(0,0,0,0.9)] transform -rotate-2 hover:rotate-0 transition-all duration-1000 group relative mt-8">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                          <img
+                            src={data.photo}
+                            className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-1000"
+                            alt="Eternal Moment"
+                          />
+                        </div>
+                      )}
+
                       {!showCelebrate ? (
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center justify-center pt-4 md:pt-8 w-full">
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center justify-center pt-8 md:pt-12 w-full">
                           <button
                             onClick={() => setShowCelebrate(true)}
                             className="luxury-text px-10 py-5 md:px-16 md:py-6 border-2 border-yellow-600/50 rounded-none text-xl md:text-2xl font-black uppercase tracking-[0.4em] active:scale-110 md:hover:scale-110 transition-all shadow-[0_0_50px_rgba(212,175,55,0.2)] w-full md:w-auto"
@@ -518,19 +518,7 @@ const App: React.FC = () => {
                 <>
                   <FloatingElements type="BLOB" />
                   <div className="relative w-full max-w-4xl py-12 flex flex-col items-center gap-12">
-                    {data.photo && (
-                      <div className="absolute -top-10 -right-4 md:top-10 md:right-10 w-48 h-48 md:w-72 md:h-72 opacity-60 blur-[1px] hover:opacity-100 hover:blur-0 transition-all duration-1000 z-0">
-                        <div className="w-full h-full rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-4 border-blue-400/20 shadow-2xl">
-                          <img
-                            src={data.photo}
-                            className="w-full h-full object-cover grayscale"
-                            alt="Reflections"
-                          />
-                        </div>
-                      </div>
-                    )}
-
-                    <div className={`space-y-10 md:space-y-12 max-w-2xl flex flex-col items-center relative z-10 ${!data.photo ? 'w-full' : ''}`}>
+                    <div className={`space-y-10 md:space-y-12 max-w-2xl flex flex-col items-center relative z-10 w-full`}>
                       <h3 className="text-blue-400/50 text-[9px] md:text-[10px] uppercase tracking-[1em] font-bold">
                         Quiet Reflection
                       </h3>
@@ -542,6 +530,19 @@ const App: React.FC = () => {
                           "{data.message}"
                         </p>
                       </div>
+
+                      {data.photo && (
+                        <div className="relative w-56 h-56 md:w-80 md:h-80 opacity-80 hover:opacity-100 transition-all duration-1000 z-10 mt-8">
+                          <div className="w-full h-full rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-4 border-blue-400/20 shadow-2xl">
+                            <img
+                              src={data.photo}
+                              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                              alt="Reflections"
+                            />
+                          </div>
+                        </div>
+                      )}
+
                       <p className="text-white/20 text-[9px] md:text-xs tracking-[0.5em] uppercase">
                         Sent with sincerity by {data.senderName}
                       </p>
@@ -611,23 +612,7 @@ const App: React.FC = () => {
                       </div>
                     )}
 
-                    <div className={`space-y-10 md:space-y-16 flex flex-col items-center text-center ${!data.photo ? 'w-full py-20' : ''}`}>
-                      {data.photo && (
-                        <div className="relative w-56 h-56 md:w-80 md:h-80 mb-8">
-                          <div className="absolute inset-[-20px] border-[3px] border-dashed border-yellow-400/50 rounded-full animate-[spin_12s_linear_infinite]"></div>
-                          <div className="w-full h-full rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] border-4 border-white overflow-hidden shadow-[0_0_120px_rgba(255,223,0,0.6)] relative z-10 group">
-                            <img
-                              src={data.photo}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-                              alt="The Icon"
-                            />
-                          </div>
-                          <div className="absolute -top-6 -left-6 text-6xl drop-shadow-xl animate-bounce z-20">
-                            👑
-                          </div>
-                        </div>
-                      )}
-
+                    <div className={`space-y-10 md:space-y-16 flex flex-col items-center text-center w-full py-20`}>
                       <h3 className="text-yellow-400 text-[9px] md:text-sm uppercase tracking-[1.5em] font-black animate-pulse">
                         The World Celebrates You
                       </h3>
@@ -644,6 +629,23 @@ const App: React.FC = () => {
                           "{data.message}"
                         </p>
                       </div>
+
+                      {data.photo && (
+                        <div className="relative w-56 h-56 md:w-80 md:h-80 mt-12 md:mt-20">
+                          <div className="absolute inset-[-20px] border-[3px] border-dashed border-yellow-400/50 rounded-full animate-[spin_12s_linear_infinite]"></div>
+                          <div className="w-full h-full rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] border-4 border-white overflow-hidden shadow-[0_0_120px_rgba(255,223,0,0.6)] relative z-10 group">
+                            <img
+                              src={data.photo}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                              alt="The Icon"
+                            />
+                          </div>
+                          <div className="absolute -top-6 -left-6 text-6xl drop-shadow-xl animate-bounce z-20">
+                            👑
+                          </div>
+                        </div>
+                      )}
+
                       <p className="text-yellow-400/50 text-[10px] md:text-sm tracking-[0.8em] uppercase font-bold">
                         Handcrafted by {data.senderName} ✦
                       </p>
