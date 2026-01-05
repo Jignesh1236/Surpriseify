@@ -413,14 +413,14 @@ const App: React.FC = () => {
                   <div className="relative space-y-8 md:space-y-12 max-w-4xl py-12 flex flex-col items-center z-10">
                     {data.photo && (
                       <div className="relative mb-6">
-                        <div className="w-52 h-52 md:w-72 md:h-72 rounded-full border-4 border-red-500/30 p-2 overflow-hidden shadow-[0_0_100px_rgba(255,45,85,0.4)] animate-float">
+                        <div className="w-56 h-56 md:w-80 md:h-80 rounded-[2rem] md:rounded-[3rem] border-2 border-red-500/30 p-2 overflow-hidden shadow-[0_20px_100px_rgba(255,45,85,0.4)] animate-float transform rotate-2">
                           <img
                             src={data.photo}
-                            className="w-full h-full object-cover rounded-full scale-110 hover:scale-125 transition-transform duration-[2000ms]"
+                            className="w-full h-full object-cover rounded-[1.5rem] md:rounded-[2.5rem] scale-110 hover:scale-125 transition-transform duration-[2000ms]"
                             alt="Memory"
                           />
                         </div>
-                        <div className="absolute -bottom-4 -right-4 text-5xl animate-bounce drop-shadow-[0_0_20px_rgba(255,45,85,0.8)]">
+                        <div className="absolute -bottom-6 -right-6 text-6xl animate-bounce drop-shadow-[0_0_20px_rgba(255,45,85,0.8)] z-10">
                           💖
                         </div>
                       </div>
@@ -465,10 +465,11 @@ const App: React.FC = () => {
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
                   <div className="relative w-full max-w-6xl py-12 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20">
                     {data.photo && (
-                      <div className="w-64 h-80 md:w-80 md:h-[30rem] border-4 border-[#d4af37] p-2 bg-neutral-900 shadow-[20px_20px_60px_rgba(0,0,0,0.8)] transform -rotate-3 hover:rotate-0 transition-transform duration-700">
+                      <div className="w-72 h-96 md:w-96 md:h-[35rem] border-8 border-double border-[#d4af37] p-3 bg-neutral-900 shadow-[30px_30px_80px_rgba(0,0,0,0.9)] transform -rotate-2 hover:rotate-0 transition-all duration-1000 group relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <img
                           src={data.photo}
-                          className="w-full h-full object-cover opacity-80"
+                          className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-1000"
                           alt="Eternal Moment"
                         />
                       </div>
@@ -518,8 +519,8 @@ const App: React.FC = () => {
                   <FloatingElements type="BLOB" />
                   <div className="relative w-full max-w-4xl py-12 flex flex-col items-center gap-12">
                     {data.photo && (
-                      <div className="absolute top-0 right-0 md:top-10 md:right-10 w-40 h-40 md:w-64 md:h-64 opacity-40 blur-[2px] hover:opacity-100 hover:blur-0 transition-all duration-1000">
-                        <div className="w-full h-full rounded-[40%_60%_70%_30%_/_40%_50%_60%_40%] overflow-hidden border-2 border-blue-500/30">
+                      <div className="absolute -top-10 -right-4 md:top-10 md:right-10 w-48 h-48 md:w-72 md:h-72 opacity-60 blur-[1px] hover:opacity-100 hover:blur-0 transition-all duration-1000 z-0">
+                        <div className="w-full h-full rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-4 border-blue-400/20 shadow-2xl">
                           <img
                             src={data.photo}
                             className="w-full h-full object-cover grayscale"
@@ -573,16 +574,17 @@ const App: React.FC = () => {
                       </h2>
 
                       {data.photo && (
-                        <div className="absolute -bottom-16 right-4 md:-right-10 w-40 h-48 md:w-64 md:h-72 bg-white p-1.5 md:p-2 rotate-6 md:rotate-12 shadow-[10px_10px_0px_#af52de] md:shadow-[15px_15px_0px_#af52de] transform hover:scale-110 transition-transform duration-500 z-30">
-                          <div className="w-full h-[85%] overflow-hidden">
+                        <div className="absolute -bottom-24 right-2 md:-right-12 w-48 h-60 md:w-72 md:h-84 bg-white p-2 md:p-3 rotate-3 md:rotate-6 shadow-[20px_20px_0px_#af52de] transform hover:scale-105 hover:-rotate-0 transition-all duration-500 z-30 ring-1 ring-black/5">
+                          <div className="w-full h-[85%] overflow-hidden relative group">
+                            <div className="absolute inset-0 bg-purple-500/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             <img
                               src={data.photo}
                               className="w-full h-full object-cover"
                               alt="The Duo"
                             />
                           </div>
-                          <div className="text-black font-black text-[10px] mt-2 tracking-tighter uppercase">
-                            STAY WILD / {new Date().getFullYear()}
+                          <div className="text-black font-black text-[12px] md:text-sm mt-3 tracking-tighter uppercase text-center border-t border-black/10 pt-2">
+                            MOMENT OF THE YEAR // {new Date().getFullYear()}
                           </div>
                         </div>
                       )}
@@ -617,16 +619,17 @@ const App: React.FC = () => {
 
                     <div className={`space-y-10 md:space-y-16 flex flex-col items-center text-center ${!data.photo ? 'w-full py-20' : ''}`}>
                       {data.photo && (
-                        <div className="relative w-48 h-48 md:w-64 md:h-64 mb-4">
-                          <div className="absolute inset-[-15px] border-2 border-yellow-400 rounded-full animate-[spin_8s_linear_infinite]"></div>
-                          <div className="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-[0_0_100px_rgba(255,223,0,0.5)]">
+                        <div className="relative w-56 h-56 md:w-80 md:h-80 mb-8">
+                          <div className="absolute inset-[-20px] border-[3px] border-dashed border-yellow-400/50 rounded-full animate-[spin_12s_linear_infinite]"></div>
+                          <div className="absolute inset-[-10px] border-2 border-white/20 rounded-full"></div>
+                          <div className="w-full h-full rounded-full border-4 border-white overflow-hidden shadow-[0_0_120px_rgba(255,223,0,0.6)] relative z-10 group">
                             <img
                               src={data.photo}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                               alt="The Icon"
                             />
                           </div>
-                          <div className="absolute -top-4 -left-4 text-5xl">
+                          <div className="absolute -top-6 -left-6 text-6xl drop-shadow-xl animate-bounce z-20">
                             👑
                           </div>
                         </div>
