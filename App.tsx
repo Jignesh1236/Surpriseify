@@ -551,16 +551,16 @@ const App: React.FC = () => {
                       ))}
                     </div>
 
-                    <div className={`relative text-center w-full flex flex-col items-center ${!data.photo ? 'justify-center min-h-[40vh]' : ''}`}>
+                    <div className={`relative text-center w-full flex flex-col items-center ${!data.photo ? 'justify-center min-h-[40vh]' : 'min-h-[30vh] md:min-h-0'}`}>
                       <h2
-                        className={`text-6xl md:text-[14rem] font-black italic tracking-tighter uppercase text-transparent stroke-white break-words ${!data.photo ? 'relative z-10' : ''}`}
+                        className={`text-6xl md:text-[14rem] font-black italic tracking-tighter uppercase text-transparent stroke-white break-words ${!data.photo ? 'relative z-10' : 'relative z-0'}`}
                         style={{ WebkitTextStroke: "1px white" }}
                       >
                         {data.recipientName}
                       </h2>
 
                       {data.photo && (
-                        <div className="absolute -bottom-10 right-0 md:-right-10 w-48 h-56 md:w-64 md:h-72 bg-white p-2 rotate-12 shadow-[15px_15px_0px_#af52de] transform hover:scale-110 transition-transform duration-500 z-20">
+                        <div className="absolute -bottom-16 right-4 md:-right-10 w-40 h-48 md:w-64 md:h-72 bg-white p-1.5 md:p-2 rotate-6 md:rotate-12 shadow-[10px_10px_0px_#af52de] md:shadow-[15px_15px_0px_#af52de] transform hover:scale-110 transition-transform duration-500 z-30">
                           <div className="w-full h-[85%] overflow-hidden">
                             <img
                               src={data.photo}
