@@ -488,7 +488,7 @@ const App: React.FC = () => {
                       ) : (
                         <div className="animate-reveal py-8 w-full">
                           <h3 className="luxury-text text-3xl md:text-7xl font-black italic tracking-widest leading-tight uppercase">
-                            Confirmed For Eternity
+                            MESSAGE BHI KAR DO
                           </h3>
                           <div className="mt-4 flex justify-center md:justify-start gap-4 text-3xl md:text-4xl">
                             ✨ 🕊️ ✨
