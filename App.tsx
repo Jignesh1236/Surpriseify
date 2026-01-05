@@ -425,7 +425,7 @@ const App: React.FC = () => {
                       </div>
                     )}
 
-                    <div className="text-8xl md:text-[15rem] opacity-5 absolute -top-24 md:-top-40 left-1/2 -translate-x-1/2 select-none animate-[heartbeat_2s_infinite]">
+                    <div className={`text-8xl md:text-[15rem] opacity-5 absolute left-1/2 -translate-x-1/2 select-none animate-[heartbeat_2s_infinite] ${data.photo ? '-top-24 md:-top-40' : 'top-1/2 -translate-y-1/2'}`}>
                       ❤️
                     </div>
                     <h3 className="text-white/30 text-[9px] md:text-sm uppercase tracking-[1em] font-bold">
@@ -461,7 +461,7 @@ const App: React.FC = () => {
                       </div>
                     )}
 
-                    <div className="glass-card rounded-none border-0 p-6 md:p-12 space-y-12 md:space-y-16 flex flex-col items-center md:items-start text-center md:text-left flex-1">
+                    <div className={`glass-card rounded-none border-0 p-6 md:p-12 space-y-12 md:space-y-16 flex flex-col items-center ${data.photo ? 'md:items-start text-center md:text-left' : 'text-center'} flex-1`}>
                       <div className="luxury-text elegant-font text-base md:text-2xl uppercase tracking-[0.4em] font-bold">
                         The Promise
                       </div>
@@ -516,7 +516,7 @@ const App: React.FC = () => {
                       </div>
                     )}
 
-                    <div className="space-y-10 md:space-y-12 max-w-2xl flex flex-col items-center relative z-10">
+                    <div className={`space-y-10 md:space-y-12 max-w-2xl flex flex-col items-center relative z-10 ${!data.photo ? 'w-full' : ''}`}>
                       <h3 className="text-blue-400/50 text-[9px] md:text-[10px] uppercase tracking-[1em] font-bold">
                         Quiet Reflection
                       </h3>
@@ -551,9 +551,9 @@ const App: React.FC = () => {
                       ))}
                     </div>
 
-                    <div className="relative text-center w-full">
+                    <div className={`relative text-center w-full flex flex-col items-center ${!data.photo ? 'justify-center min-h-[40vh]' : ''}`}>
                       <h2
-                        className="text-6xl md:text-[14rem] font-black italic tracking-tighter uppercase text-transparent stroke-white break-words"
+                        className={`text-6xl md:text-[14rem] font-black italic tracking-tighter uppercase text-transparent stroke-white break-words ${!data.photo ? 'relative z-10' : ''}`}
                         style={{ WebkitTextStroke: "1px white" }}
                       >
                         {data.recipientName}
@@ -602,7 +602,7 @@ const App: React.FC = () => {
                       </div>
                     )}
 
-                    <div className="space-y-10 md:space-y-16 flex flex-col items-center text-center">
+                    <div className={`space-y-10 md:space-y-16 flex flex-col items-center text-center ${!data.photo ? 'w-full py-20' : ''}`}>
                       {data.photo && (
                         <div className="relative w-48 h-48 md:w-64 md:h-64 mb-4">
                           <div className="absolute inset-[-15px] border-2 border-yellow-400 rounded-full animate-[spin_8s_linear_infinite]"></div>
