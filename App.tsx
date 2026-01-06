@@ -514,47 +514,51 @@ const App: React.FC = () => {
                 </>
               )}
 
-             data.vibe === Vibe.SORRY && (
-                <>
-                  <FloatingElements type="BLOB" />
-                  <div className="relative w-full max-w-4xl py-12 flex flex-col items-center gap-12">
-                    <div className={`space-y-10 md:space-y-12 max-w-2xl flex flex-col items-center relative z-10 w-full`}>
-                      <h3 className="text-blue-400/50 text-[9px] md:text-[10px] uppercase tracking-[1em] font-bold">
-                        Quiet Reflection
-                      </h3>
-                      
-                      {/* Heading and Background Image Container */}
-                      <div className="relative w-full flex flex-col items-center">
-                        {data.photo && (
-                          <div className="absolute -top-6 -right-2 md:-top-12 md:-right-8 w-36 h-36 md:w-60 md:h-60 opacity-40 blur-[1px] z-0">
-                            <div className="w-full h-full rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-2 border-blue-400/20">
-                              <img
-                                src={data.photo}
-                                className="w-full h-full object-cover grayscale"
-                                alt="Reflections"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        
-                        <h2 className="relative z-10 text-5xl md:text-[9rem] font-bold tracking-tighter leading-none text-white/90 break-words text-center">
-                          SORRY, <br /> {data.recipientName}
-                        </h2>
-                      </div>
+{data.vibe === Vibe.SORRY && (
+  <>
+    <FloatingElements type="BLOB" />
 
-                      <div className="p-8 md:p-16 border border-white/5 rounded-[40px] md:rounded-[80px] bg-white/[0.01] backdrop-blur-2xl w-full relative z-10">
-                        <p className="text-xl md:text-4xl font-light text-blue-100/80 leading-relaxed italic break-words text-center">
-                          "{data.message}"
-                        </p>
-                      </div>
+    <div className="relative w-full max-w-4xl py-12 flex flex-col items-center gap-12">
+      <div className="space-y-10 md:space-y-12 max-w-2xl flex flex-col items-center relative z-10 w-full">
 
-                      <p className="text-white/20 text-[9px] md:text-xs tracking-[0.5em] uppercase relative z-10">
-                        Sent with sincerity by {data.senderName}
-                      </p>
-                    </div>
-                  </div>
-                </>
-              )}
+        <h3 className="text-blue-400/50 text-[9px] md:text-[10px] uppercase tracking-[1em] font-bold">
+          Quiet Reflection
+        </h3>
+
+        {/* Heading + Image */}
+        <div className="relative w-full flex flex-col items-center">
+          {data.photo && (
+            <div className="absolute -top-6 -right-2 md:-top-12 md:-right-8 w-36 h-36 md:w-60 md:h-60 opacity-40 blur-[1px] z-0">
+              <div className="w-full h-full rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-2 border-blue-400/20">
+                <img
+                  src={data.photo}
+                  className="w-full h-full object-cover grayscale"
+                  alt="Reflections"
+                />
+              </div>
+            </div>
+          )}
+
+          <h2 className="relative z-10 text-5xl md:text-[9rem] font-bold tracking-tighter leading-none text-white/90 text-center">
+            SORRY, <br /> {data.recipientName}
+          </h2>
+        </div>
+
+        <div className="p-8 md:p-16 border border-white/5 rounded-[40px] md:rounded-[80px] bg-white/[0.01] backdrop-blur-2xl w-full relative z-10">
+          <p className="text-xl md:text-4xl font-light text-blue-100/80 leading-relaxed italic text-center">
+            "{data.message}"
+          </p>
+        </div>
+
+        <p className="text-white/20 text-[9px] md:text-xs tracking-[0.5em] uppercase">
+          Sent with sincerity by {data.senderName}
+        </p>
+
+      </div>
+    </div>
+  </>
+)}
+
 
               {data.vibe === Vibe.FRIEND && (
                 <>
