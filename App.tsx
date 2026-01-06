@@ -405,61 +405,68 @@ const App: React.FC = () => {
           ) : (
             <div className="w-full h-full relative flex flex-col items-center justify-center animate-reveal px-4 overflow-y-auto pt-20 pb-40">
               {/* THEME SPECIFIC BACKGROUNDS */}
-              {data.vibe === Vibe.LOVE && (
+             {data.vibe === Vibe.LOVE && (
                 <>
                   <FloatingElements type="HEART" />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,45,85,0.15),transparent_70%)] animate-pulse"></div>
                   <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.8))]"></div>
-                  <div className="relative space-y-8 md:space-y-12 max-w-4xl py-12 flex flex-col items-center z-10">
+                  
+                  <div className="relative space-y-8 md:space-y-12 max-w-4xl py-12 flex flex-col items-center z-10 w-full">
+                    {/* Background Heart Emoji */}
                     <div className={`text-[12rem] md:text-[25rem] opacity-[0.03] absolute left-1/2 -translate-x-1/2 select-none animate-[heartbeat_3s_infinite] pointer-events-none -top-20 md:-top-40`}>
                       ❤️
                     </div>
                     
-                    <div className="space-y-4 text-center">
-                      <h3 className="text-red-500/60 text-[10px] md:text-xs uppercase tracking-[1.5em] font-black animate-pulse">
+                    <div className="space-y-4 text-center w-full relative">
+                      <h3 className="text-red-500/60 text-[10px] md:text-xs uppercase tracking-[1.5em] font-black animate-pulse relative z-20">
                         A Digital Masterpiece of Love
                       </h3>
-                      <h2 className="romantic-font text-6xl md:text-[12rem] text-transparent bg-clip-text bg-gradient-to-b from-red-400 via-red-600 to-red-900 font-bold leading-none drop-shadow-[0_0_30px_rgba(255,45,85,0.3)] break-words py-4">
-                        My {data.recipientName}
-                      </h2>
+
+                      {/* Heading and Image Container */}
+                      <div className="relative w-full flex justify-center items-center">
+                        {data.photo && (
+                          <div className="absolute -top-10 -right-2 md:-top-24 md:-right-10 w-44 h-44 md:w-72 md:h-72 opacity-40 blur-[1px] z-10">
+                            <div className="w-full h-full rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-2 border-red-500/20 shadow-[0_0_50px_rgba(255,45,85,0.2)] animate-float">
+                              <img
+                                src={data.photo}
+                                className="w-full h-full object-cover grayscale brightness-110"
+                                alt="Memory"
+                              />
+                            </div>
+                            {/* Chota Bouncing Heart Image par */}
+                            <div className="absolute -bottom-2 -right-2 text-3xl md:text-5xl animate-bounce drop-shadow-xl">
+                              💖
+                            </div>
+                          </div>
+                        )}
+
+                        <h2 className="romantic-font relative z-20 text-6xl md:text-[12rem] text-transparent bg-clip-text bg-gradient-to-b from-red-400 via-red-600 to-red-900 font-bold leading-none drop-shadow-[0_0_30px_rgba(255,45,85,0.3)] break-words py-4">
+                          My {data.recipientName}
+                        </h2>
+                      </div>
                     </div>
 
-                    <div className="relative group max-w-2xl">
+                    <div className="relative group max-w-2xl text-center z-20">
                       <div className="absolute -inset-4 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                       <p className="text-2xl md:text-6xl font-extralight leading-tight italic text-white/90 px-4 break-words relative z-10 drop-shadow-2xl">
                         "{data.message}"
                       </p>
                     </div>
 
-                    {data.photo && (
-                      <div className="relative mt-12 md:mt-16">
-                        <div className="w-56 h-56 md:w-80 md:h-80 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] overflow-hidden border-4 border-red-500/20 shadow-[0_20px_100px_rgba(255,45,85,0.4)] animate-float">
-                          <img
-                            src={data.photo}
-                            className="w-full h-full object-cover scale-110 hover:scale-125 transition-transform duration-[2000ms]"
-                            alt="Memory"
-                          />
-                        </div>
-                        <div className="absolute -bottom-6 -right-6 text-6xl animate-bounce drop-shadow-[0_0_20px_rgba(255,45,85,0.8)] z-10">
-                          💖
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="pt-12 md:pt-20 flex flex-col items-center space-y-4">
+                    <div className="pt-12 md:pt-20 flex flex-col items-center space-y-4 relative z-20">
                       <div className="flex items-center gap-4">
                         <div className="h-px w-12 md:w-24 bg-gradient-to-r from-transparent to-red-500"></div>
                         <div className="w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
                         <div className="h-px w-12 md:w-24 bg-gradient-to-l from-transparent to-red-500"></div>
                       </div>
-                      <p className="text-white/40 text-[10px] md:text-sm uppercase tracking-[0.8em] font-medium italic">
+                      <p className="text-white/40 text-[10px] md:text-sm uppercase tracking-[0.8em] font-medium italic text-center">
                         Yours Eternally, {data.senderName}
                       </p>
                     </div>
                   </div>
                 </>
               )}
-
+              
               {data.vibe === Vibe.PROPOSE && (
                 <>
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
